@@ -1,5 +1,5 @@
 /*****************************************************************************
- * @Purpose: To Add Users In Database
+ * @Purpose: To Add, Find Users In Database
  * @Author: Kumar Shanbhag
  * @Date: 02/07/2020
  *****************************************************************************/
@@ -9,6 +9,8 @@ import com.greeting.model.User;
 import com.greeting.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/greeting")
@@ -24,5 +26,15 @@ public class GreetingController {
     @PostMapping("/user")
     public User addUser(@RequestBody User user){
         return greetingService.addUser(user);
+    }
+
+    /**
+     * @Purpose: To Get List Of All User From Database
+     * @param
+     * @return
+     */
+    @GetMapping("/user")
+    public List<User> getAllUser() {
+        return greetingService.getAllUser();
     }
 }
