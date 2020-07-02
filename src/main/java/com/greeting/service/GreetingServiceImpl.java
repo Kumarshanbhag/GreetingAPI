@@ -1,5 +1,5 @@
 /*****************************************************************************
- * @Purpose: To Add, Find and Update Users In Database
+ * @Purpose: To Add, Find, Update and Delete  Users In Database
  * @Author: Kumar Shanbhag
  * @Date: 02/07/2020
  *****************************************************************************/
@@ -49,5 +49,15 @@ public class GreetingServiceImpl implements IGreetingService{
         userUpdate.setFirstName(user.getFirstName());
         userUpdate.setLastName(user.getLastName());
         return greetingRepository.save(userUpdate);
+    }
+    /**
+     * @Purpose: To Delete User In Database
+     * @param id
+     * @return
+     */
+    @Override
+    public String deleteUser(int id) {
+        greetingRepository.deleteById(id);
+        return "User Deleted Successfully";
     }
 }
