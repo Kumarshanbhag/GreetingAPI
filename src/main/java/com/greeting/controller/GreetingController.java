@@ -1,5 +1,5 @@
 /*****************************************************************************
- * @Purpose: To Add, Find Users In Database
+ * @Purpose: To Add, Find and Update Users In Database
  * @Author: Kumar Shanbhag
  * @Date: 02/07/2020
  *****************************************************************************/
@@ -36,5 +36,16 @@ public class GreetingController {
     @GetMapping("/user")
     public List<User> getAllUser() {
         return greetingService.getAllUser();
+    }
+
+    /**
+     * @Purpose: To Update User In Database
+     * @param id
+     * @param user
+     * @return
+     */
+    @PutMapping("/user")
+    public User addUser(@RequestParam(value = "id") int id, @RequestBody User user){
+        return greetingService.updateUser(id, user);
     }
 }

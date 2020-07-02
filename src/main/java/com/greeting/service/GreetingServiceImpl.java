@@ -1,5 +1,5 @@
 /*****************************************************************************
- * @Purpose: To Add, Find Users In Database
+ * @Purpose: To Add, Find and Update Users In Database
  * @Author: Kumar Shanbhag
  * @Date: 02/07/2020
  *****************************************************************************/
@@ -35,5 +35,19 @@ public class GreetingServiceImpl implements IGreetingService{
     @Override
     public List<User> getAllUser() {
         return greetingRepository.findAll();
+    }
+
+    /**
+     * @Purpose: To Update User In Database
+     * @param id
+     * @param user
+     * @return
+     */
+    @Override
+    public User updateUser(int id, User user) {
+        User userUpdate = greetingRepository.findById(id).get();
+        userUpdate.setFirstName(user.getFirstName());
+        userUpdate.setLastName(user.getLastName());
+        return greetingRepository.save(userUpdate);
     }
 }
