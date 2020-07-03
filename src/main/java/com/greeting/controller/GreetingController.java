@@ -44,8 +44,8 @@ public class GreetingController {
      * @param user
      * @return
      */
-    @PutMapping ("/user")
-    public User addUser(@RequestParam (value = "id") int id, @RequestBody User user) {
+    @PutMapping ("/user/{id}")
+    public User addUser(@PathVariable int id, @RequestBody User user) {
         return greetingService.updateUser(id, user);
     }
 
@@ -54,8 +54,8 @@ public class GreetingController {
      * @param id
      * @return
      */
-    @DeleteMapping ("/user")
-    public String deleteUser(@RequestParam (value = "id") int id) {
+    @DeleteMapping ("/user/{id}")
+    public String deleteUser(@PathVariable int id) {
         return greetingService.deleteUser(id);
     }
 }

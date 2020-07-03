@@ -24,7 +24,7 @@ public class GreetingServiceImpl implements IGreetingService{
      */
     @Override
     public User addUser(User user) {
-        return greetingRepository.save(user) ;
+        return greetingRepository.save(user);
     }
 
     /**
