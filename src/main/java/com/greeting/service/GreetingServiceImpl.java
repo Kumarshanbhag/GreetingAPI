@@ -6,6 +6,7 @@
 package com.greeting.service;
 
 import com.greeting.dto.UserDTO;
+import com.greeting.exception.UserException;
 import com.greeting.model.User;
 import com.greeting.repository.IGreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GreetingServiceImpl implements IGreetingService{
+public class GreetingServiceImpl implements IGreetingService {
     @Autowired
     IGreetingRepository greetingRepository;
 
     /**
      * @Purpose: To Add User In Database
      * @param userDTO
-     * @return
+     * @return user
      */
     @Override
     public User addUser(UserDTO userDTO) {
@@ -32,7 +33,7 @@ public class GreetingServiceImpl implements IGreetingService{
     /**
      * @Purpose: To Get List Of All User From Database
      * @param
-     * @return
+     * @return user
      */
     @Override
     public List<User> getAllUser() {
@@ -47,19 +48,23 @@ public class GreetingServiceImpl implements IGreetingService{
      */
     @Override
     public User updateUser(int id, UserDTO userDTO) {
-        User user = greetingRepository.findById(id).get();
+        User user = greetingRepository.findById(id).
+                orElseThrow(() -> new UserException("User Not found"));
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         return greetingRepository.save(user);
     }
+
     /**
      * @Purpose: To Delete User In Database
      * @param id
      * @return
      */
     @Override
-    public String deleteUser(int id) {
-        greetingRepository.deleteById(id);
-        return "User Deleted Successfully";
+    public List<User> deleteUser(int id) {
+      greetingRepository.findById(id).
+                orElseThrow(() -> new UserException("User Not found"));
+      greetingRepository.deleteById(id);
+      return greetingRepository.findAll();
     }
 }

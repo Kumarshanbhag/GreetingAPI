@@ -33,7 +33,7 @@ public class GreetingController {
     /**
      * @Purpose: To Get List Of All User From Database
      * @param
-     * @return
+     * @return List Of User
      */
     @GetMapping ("/user")
     public List<User> getAllUser() {
@@ -44,7 +44,7 @@ public class GreetingController {
      * @Purpose: To Update User In Database
      * @param id
      * @param userDTO
-     * @return
+     * @return User
      */
     @PutMapping ("/user/{id}")
     public User addUser(@PathVariable int id, @RequestBody @Valid UserDTO userDTO) {
@@ -54,10 +54,10 @@ public class GreetingController {
     /**
      * @Purpose: To Delete User In Database
      * @param id
-     * @return
+     * @return List Of User
      */
     @DeleteMapping ("/user/{id}")
-    public String deleteUser(@PathVariable int id) {
+    public List<User> deleteUser(@PathVariable int id) {
         return greetingService.deleteUser(id);
     }
 }

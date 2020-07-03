@@ -1,7 +1,7 @@
 /*****************************************************************************
- * @Purpose: To Accept Values And Perform Validation Before Storing In Entity
+ * @Purpose: To Generate Entity Object That Can Be Stored In database
  * @Author: Kumar Shanbhag
- * @Date: 03/07/2020
+ * @Date: 02/07/2020
  *****************************************************************************/
 package com.greeting.model;
 

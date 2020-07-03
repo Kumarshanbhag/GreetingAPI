@@ -12,5 +12,5 @@ public interface IGreetingService {
 
     User updateUser(int id, UserDTO user);
 
-    String deleteUser(int id);
+    List<User> deleteUser(int id);
 }
