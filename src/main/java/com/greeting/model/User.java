@@ -8,6 +8,7 @@ package com.greeting.model;
 import com.greeting.dto.UserDTO;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -21,6 +22,11 @@ public class User {
 
     @Column (nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
+    private LocalDateTime registerTimeStamp;
+
+    private LocalDateTime updateTimeStamp;
 
     public User() {
     }
@@ -52,5 +58,21 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public LocalDateTime getRegisterTimeStamp() {
+        return registerTimeStamp;
+    }
+
+    public void setRegisterTimeStamp(LocalDateTime registerDate) {
+        this.registerTimeStamp = registerDate;
+    }
+
+    public LocalDateTime getUpdateTimeStamp() {
+        return updateTimeStamp;
+    }
+
+    public void setUpdateTimeStamp(LocalDateTime updateTimeStamp) {
+        this.updateTimeStamp = updateTimeStamp;
     }
 }

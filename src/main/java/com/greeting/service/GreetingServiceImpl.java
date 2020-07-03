@@ -12,6 +12,7 @@ import com.greeting.repository.IGreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class GreetingServiceImpl implements IGreetingService {
     @Override
     public User addUser(UserDTO userDTO) {
         User user = new User(userDTO);
+        user.setRegisterTimeStamp(LocalDateTime.now());
         return greetingRepository.save(user);
     }
 
@@ -52,6 +54,7 @@ public class GreetingServiceImpl implements IGreetingService {
                 orElseThrow(() -> new UserException("User Not found"));
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
+        user.setUpdateTimeStamp(LocalDateTime.now());
         return greetingRepository.save(user);
     }
 
