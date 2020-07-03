@@ -5,11 +5,13 @@
  *****************************************************************************/
 package com.greeting.controller;
 
+import com.greeting.dto.UserDTO;
 import com.greeting.model.User;
 import com.greeting.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,12 +22,12 @@ public class GreetingController {
 
     /**
      * @Purpose: To Add User In Database
-     * @param user
+     * @param userDTO
      * @return user
      */
     @PostMapping ("/user")
-    public User addUser(@RequestBody User user) {
-        return greetingService.addUser(user);
+    public User addUser(@RequestBody @Valid UserDTO userDTO) {
+        return greetingService.addUser(userDTO);
     }
 
     /**
@@ -41,12 +43,12 @@ public class GreetingController {
     /**
      * @Purpose: To Update User In Database
      * @param id
-     * @param user
+     * @param userDTO
      * @return
      */
     @PutMapping ("/user/{id}")
-    public User addUser(@PathVariable int id, @RequestBody User user) {
-        return greetingService.updateUser(id, user);
+    public User addUser(@PathVariable int id, @RequestBody @Valid UserDTO userDTO) {
+        return greetingService.updateUser(id, userDTO);
     }
 
     /**

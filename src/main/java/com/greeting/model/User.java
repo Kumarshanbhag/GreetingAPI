@@ -1,9 +1,11 @@
 /*****************************************************************************
- * @Purpose: To Generate Entity Object That Can Be Stored In database
+ * @Purpose: To Accept Values And Perform Validation Before Storing In Entity
  * @Author: Kumar Shanbhag
- * @Date: 02/07/2020
+ * @Date: 03/07/2020
  *****************************************************************************/
 package com.greeting.model;
+
+import com.greeting.dto.UserDTO;
 
 import javax.persistence.*;
 
@@ -23,9 +25,9 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(UserDTO userDTO) {
+        this.firstName = userDTO.getFirstName();
+        this.lastName = userDTO.getLastName();
     }
 
     public int getId() {

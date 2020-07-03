@@ -5,6 +5,7 @@
  *****************************************************************************/
 package com.greeting.service;
 
+import com.greeting.dto.UserDTO;
 import com.greeting.model.User;
 import com.greeting.repository.IGreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,12 @@ public class GreetingServiceImpl implements IGreetingService{
 
     /**
      * @Purpose: To Add User In Database
-     * @param user
+     * @param userDTO
      * @return
      */
     @Override
-    public User addUser(User user) {
+    public User addUser(UserDTO userDTO) {
+        User user = new User(userDTO);
         return greetingRepository.save(user);
     }
 
@@ -40,15 +42,15 @@ public class GreetingServiceImpl implements IGreetingService{
     /**
      * @Purpose: To Update User In Database
      * @param id
-     * @param user
+     * @param userDTO
      * @return
      */
     @Override
-    public User updateUser(int id, User user) {
-        User userUpdate = greetingRepository.findById(id).get();
-        userUpdate.setFirstName(user.getFirstName());
-        userUpdate.setLastName(user.getLastName());
-        return greetingRepository.save(userUpdate);
+    public User updateUser(int id, UserDTO userDTO) {
+        User user = greetingRepository.findById(id).get();
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        return greetingRepository.save(user);
     }
     /**
      * @Purpose: To Delete User In Database
